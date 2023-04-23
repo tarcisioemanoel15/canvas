@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>movendo em volta do canvas</title>
+</head>
+
+<body>
+  <canvas width="500" height="500" style="background-color: rgb(119, 161, 20);"></canvas>
+  <script>
+
+    const canvas = document.querySelector('canvas');
+    let ctx = canvas.getContext('2d');
+
+    let anima, dx = 1, dy = 0, x = 1, y = 0, desenho = 50
+    function desenha() {
+      ctx.fillStyle = 'white'
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
+      ctx.fillRect(x, y, desenho, desenho)
+
+      // Contorno
+      ctx.lineWidth = 1
+      ctx.strokeStyle = 'red'
+      ctx.strokeRect(x, y, desenho, desenho)
+
+      if ((x + desenho >= canvas.width) && (y === 0)) {
+        dx = 0
+        dy = 1
+      }
+
+      if ((y + 50 >= canvas.height) && (x + desenho === 500)) {
+        dx = -1
+        dy = 0
+      }
+
+      if ((x === 0) && (y + 50 === 500)) {
+        dx = 0
+        dy = -1
+      }
+
+
+      if ((x === 0) && (y === 0)) {
+        dx = 1
+        dy = 0
+      }
+
+      x += dx
+      y += dy
+      anima = requestAnimationFrame(desenha)
+    }
+    desenha()
+  </script>
+</body>
+
+</html>
