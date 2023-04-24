@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>circulos</title>
+</head>
+
+<body>
+  <canvas width="500" height="500" style="border: solid 5px blue;"></canvas>
+
+
+  <script>
+    const canvas = document.querySelector('canvas');
+    let ctx = canvas.getContext('2d');
+
+    let anginit = 0, angfinal = 0
+
+    function desenha() {
+
+
+      ctx.beginPath()
+      ctx.fillStyle = 'violet';
+      ctx.arc(100, 100, 100, (Math.PI / 180) * anginit, (Math.PI / 180) * angfinal, false)
+      ctx.fill()
+
+
+      if (angfinal > 360) {
+        ctx.fillStyle = 'red'
+        ctx.arc(100, 100, 100, (Math.PI / 180) * anginit, (Math.PI / 180) * angfinal, true)
+        ctx.fill()
+      }
+
+      angfinal++
+      anima = requestAnimationFrame(desenha);
+    }
+
+
+    desenha()
+
+
+  </script>
+
+
+
+</body>
+
+</html>
