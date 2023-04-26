@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Click</title>
+
+  <style>
+    #can {
+      border: solid 1px brown;
+    }
+  </style>
+
+</head>
+
+<body>
+  <canvas id="can" width="500" height="500"></canvas>
+
+  <script>
+    const canvas = document.querySelector('canvas');
+    let ctx = canvas.getContext('2d')
+    let anima, desenho = 50
+    let x = 0, y = 0;
+
+    function desenha() {
+
+      ctx.fillRect(x, y, 50, 50)
+
+      document.addEventListener('keydown', (e) => {
+
+
+        ctx.clearRect(0, 0, 500, 500)
+        ctx.fillRect(x, y, 50, 50)
+        function de() {
+
+          if (e.keyCode === 39) {
+            x += 1
+            if (x + desenho >= 500) {
+              x = -1
+            }
+          }
+
+          if (e.keyCode === 40) {
+            y += 1
+            if (y + desenho >= 500) {
+              y = 0
+            }
+            console.log(y)
+          }
+
+
+
+          // 38 40 39 37
+
+          // anima = requestAnimationFrame(de)
+        }
+        de()
+      })
+
+
+
+
+
+
+
+
+
+
+    }
+    desenha();
+
+
+  </script>
+
+</body>
+
+</html>
